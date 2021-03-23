@@ -27,7 +27,7 @@ public class ModelFacade
 
   public void internetAccessCompleted(String response)
   { 
-    DailyQuote_DAO.makeFromCSV(response);
+    DailyQuote_DAO.makeFromCSV(response, myContext);
 
   }
 
