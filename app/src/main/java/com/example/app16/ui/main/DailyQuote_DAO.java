@@ -1,5 +1,8 @@
 package com.example.app16.ui.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.*;
 import java.util.HashMap;
 import java.util.Collection;
@@ -16,6 +19,9 @@ import java.text.SimpleDateFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.*;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import static android.content.Context.MODE_PRIVATE;
 
 public class DailyQuote_DAO
 { public static String getURL(String command, ArrayList<String> pars, ArrayList<String> values)
@@ -88,7 +94,7 @@ public class DailyQuote_DAO
 
 
 
-  public static ArrayList<DailyQuote> makeFromCSV(String lines)
+  public static ArrayList<DailyQuote> makeFromCSV(String lines, Context myContext)
   { ArrayList<DailyQuote> result = new ArrayList<DailyQuote>();
 
     if (lines == null)
@@ -106,6 +112,7 @@ public class DailyQuote_DAO
         { result.add(_x); }
       }
     }
+    saveData(result, myContext);
     return result;
   }
 
@@ -160,5 +167,13 @@ public class DailyQuote_DAO
     return result;
   }
 
-
+  public static void saveData(ArrayList<DailyQuote> data, Context context)
+  {
+    JSONArray jsondata = writeJSONArray(data);
+//  data format is [{"date":"2021-03-05","open":1.389506,"high":1.39053,"low":1.37817,"close":1.38941,"adjclose":1.38941,"volume":0},{"date":"2021-03-08","open":1.384811,"high":1.385999,"low":1.380281,"close":1.385368,"adjclose":1.385368,"volume":0},{"date":"2021-03-09","open":1.382437,"high":1.392118,"low":1.380338,"close":1.382361,"adjclose":1.382361,"volume":0},{"date":"2021-03-10","open":1.38871,"high":1.393417,"low":1.384677,"close":1.389043,"adjclose":1.389043,"volume":0},{"date":"2021-03-11","open":1.39313,"high":1.398054,"low":1.392176,"close":1.393146,"adjclose":1.393146,"volume":0},{"date":"2021-03-12","open":1.398641,"high":1.400403,"low":1.386789,"close":1.398993,"adjclose":1.398993,"volume":0}]
+    SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putString("downloadedData", jsondata.toString());
+    editor.apply();
+  }
 }

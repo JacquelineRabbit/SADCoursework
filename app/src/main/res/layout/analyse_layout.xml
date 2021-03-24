@@ -28,7 +28,7 @@ tools:context=".ui.main.analyseFragment" >
   android:text="Cancel"
   android:onClick="analyseCancel"
   />
-  <Button
+    <Button
       android:id="@+id/viewChart"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -36,8 +36,7 @@ tools:context=".ui.main.analyseFragment" >
       android:layout_column="4"
       android:text="View Chart"
       android:onClick="analyseCancel"
-    />
-
+      />
   </TableRow>
 
   <ImageView
@@ -45,6 +44,5 @@ tools:context=".ui.main.analyseFragment" >
      android:layout_height="500dp"
      android:layout_width="fill_parent"
      android:adjustViewBounds="true" />
-
 </TableLayout>
 </ScrollView>

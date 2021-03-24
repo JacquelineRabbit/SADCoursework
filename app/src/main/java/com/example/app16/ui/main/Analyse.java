@@ -14,10 +14,8 @@ class Analyse { static ArrayList<Analyse> Analyse_allInstances = new ArrayList<A
 
   Analyse() { Analyse_allInstances.add(this); }
 
-  static Analyse createAnalyse() {
-    Analyse result = new Analyse();
-    return result;
-  }
+  static Analyse createAnalyse() { Analyse result = new Analyse();
+    return result; }
 
 
   public GraphDisplay analyse()

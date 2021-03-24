@@ -95,7 +95,7 @@ public class analyseFragment extends Fragment implements OnClickListener
     { viewChart(_v); }
   }
 
-  public void analyseOK(View _v)
+  public void analyseOK(View _v) 
   { 
     if (analysebean.isanalyseerror())
     { Log.w(getClass().getName(), analysebean.errors());
