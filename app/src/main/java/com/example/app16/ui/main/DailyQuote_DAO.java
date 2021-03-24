@@ -174,6 +174,11 @@ public class DailyQuote_DAO
     SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
     editor.putString("downloadedData", jsondata.toString());
-    editor.apply();
+    editor.commit();
+
+//    String gettingdata = sharedPreferences.getString("downloadedData", "DEFAULT");
+//    System.out.println("GETTING "+gettingdata);
+
+//    editor.apply();
   }
 }
