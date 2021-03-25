@@ -16,21 +16,25 @@ tools:context=".ui.main.findQuoteFragment" >
         android:layout_height="match_parent">
 
       <TextView
-          android:id="@+id/findQuotedateLabel"
+          android:id="@+id/startDateText"
           android:background="#EEFFBB"
           android:hint="date for findQuote"
           android:text="Start Date:"
           android:textStyle="bold" />
 
       <EditText
-          android:id="@+id/findQuotedateField"
-          android:layout_span="4" />
+          android:id="@+id/editTextDate2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="date" />
+
     </TableRow>
 
     <TableRow>
 
       <TextView
-          android:id="@+id/findQuotedateLabel"
+          android:id="@+id/startDateText"
           android:background="#EEFFBB"
           android:hint="date for findQuote"
           android:text="End Date:"
@@ -50,14 +54,14 @@ tools:context=".ui.main.findQuoteFragment" >
         android:layout_height="match_parent">
 
       <TextView
-          android:id="@+id/findQuotedateLabel"
+          android:id="@+id/startDateText"
           android:background="#EEFFBB"
           android:hint="date for findQuote"
           android:text="Share symbol: "
           android:textStyle="bold" />
 
       <EditText
-          android:id="@+id/findQuotedateField"
+          android:id="@+id/startDate"
           android:layout_span="4" />
     </TableRow>
 
