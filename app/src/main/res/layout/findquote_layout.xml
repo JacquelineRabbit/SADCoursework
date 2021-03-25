@@ -8,49 +8,91 @@ tools:context=".ui.main.findQuoteFragment" >
 
   <TableLayout
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
+  android:layout_height="wrap_content"
   android:stretchColumns="1" >
 
-  <TableRow>
-  <TextView
-    android:id="@+id/findQuotedateLabel"
-    android:hint="date for findQuote"
-    android:textStyle="bold"
-    android:background="#EEFFBB"
-    android:text="Date:" />
-  <EditText
-    android:id="@+id/findQuotedateField"
-    android:layout_span="4" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <TextView
+          android:id="@+id/findQuotedateLabel"
+          android:background="#EEFFBB"
+          android:hint="date for findQuote"
+          android:text="Start Date:"
+          android:textStyle="bold" />
+
+      <EditText
+          android:id="@+id/findQuotedateField"
+          android:layout_span="4" />
+    </TableRow>
+
+    <TableRow>
+
+      <TextView
+          android:id="@+id/findQuotedateLabel"
+          android:background="#EEFFBB"
+          android:hint="date for findQuote"
+          android:text="End Date:"
+          android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" />
+
   </TableRow>
 
-  <TableRow>
-  <Button
-  android:id="@+id/findQuoteOK"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:layout_column="1"
-  android:background="#AAAAFF"
-  android:text="findQuote"
-  android:onClick="findQuoteOK"
-  />
-  <Button
-  android:id="@+id/findQuoteCancel"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:background="#FFAAAA"
-  android:layout_column="3"
-  android:text="Cancel"
-  android:onClick="findQuoteCancel"
-  />
-  </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <TableRow>
-  <TextView
-    android:id="@+id/findQuoteResultLabel"
-    android:hint="Result of findQuote"
-    android:textStyle="bold"
-    android:background="#EEFFBB"
-    android:text="Result:" />
+      <TextView
+          android:id="@+id/findQuotedateLabel"
+          android:background="#EEFFBB"
+          android:hint="date for findQuote"
+          android:text="Share symbol: "
+          android:textStyle="bold" />
+
+      <EditText
+          android:id="@+id/findQuotedateField"
+          android:layout_span="4" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <Button
+          android:id="@+id/findQuoteOK"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_column="1"
+          android:background="#AAAAFF"
+          android:onClick="findQuoteOK"
+          android:text="findQuote" />
+
+      <Button
+          android:id="@+id/findQuoteCancel"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_column="3"
+          android:background="#FFAAAA"
+          android:onClick="findQuoteCancel"
+          android:text="Cancel" />
+    </TableRow>
+
+    <TableRow>
+
+      <TextView
+          android:id="@+id/findQuoteResultLabel"
+          android:layout_height="wrap_content"
+          android:background="#EEFFBB"
+          android:hint="Result of findQuote"
+          android:text="Result:"
+          android:textStyle="bold" />
   <TextView
     android:id="@+id/findQuoteResult"
     android:hint="Result of findQuote"
