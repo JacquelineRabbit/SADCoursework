@@ -172,8 +172,6 @@ public class DailyQuote_DAO
     // Load previous data and append current data to it
     JSONArray previousData = loadData(context);
     JSONArray jsondata = writeJSONArray(data);
-    System.out.println("Previous "+previousData);
-    System.out.println("New "+jsondata);
     try {
       for (int i = 0; i < jsondata.length(); i++) {
         JSONObject jsonObject = jsondata.getJSONObject(i);
@@ -182,7 +180,6 @@ public class DailyQuote_DAO
     } catch (JSONException e){
       e.printStackTrace();
     }
-    System.out.println("Combined "+previousData);
     SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
     editor.putString("downloadedData", (previousData.toString()));
