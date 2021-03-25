@@ -169,16 +169,36 @@ public class DailyQuote_DAO
 
   public static void saveData(ArrayList<DailyQuote> data, Context context)
   {
+    // Load previous data and append current data to it
+    JSONArray previousData = loadData(context);
     JSONArray jsondata = writeJSONArray(data);
-//  data format is [{"date":"2021-03-05","open":1.389506,"high":1.39053,"low":1.37817,"close":1.38941,"adjclose":1.38941,"volume":0},{"date":"2021-03-08","open":1.384811,"high":1.385999,"low":1.380281,"close":1.385368,"adjclose":1.385368,"volume":0},{"date":"2021-03-09","open":1.382437,"high":1.392118,"low":1.380338,"close":1.382361,"adjclose":1.382361,"volume":0},{"date":"2021-03-10","open":1.38871,"high":1.393417,"low":1.384677,"close":1.389043,"adjclose":1.389043,"volume":0},{"date":"2021-03-11","open":1.39313,"high":1.398054,"low":1.392176,"close":1.393146,"adjclose":1.393146,"volume":0},{"date":"2021-03-12","open":1.398641,"high":1.400403,"low":1.386789,"close":1.398993,"adjclose":1.398993,"volume":0}]
+    System.out.println("Previous "+previousData);
+    System.out.println("New "+jsondata);
+    try {
+      for (int i = 0; i < jsondata.length(); i++) {
+        JSONObject jsonObject = jsondata.getJSONObject(i);
+        previousData.put(jsonObject);
+      }
+    } catch (JSONException e){
+      e.printStackTrace();
+    }
+    System.out.println("Combined "+previousData);
     SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
-    editor.putString("downloadedData", jsondata.toString());
+    editor.putString("downloadedData", (previousData.toString()));
     editor.commit();
+  }
 
-//    String gettingdata = sharedPreferences.getString("downloadedData", "DEFAULT");
-//    System.out.println("GETTING "+gettingdata);
-
-//    editor.apply();
+  public static JSONArray loadData(Context context)
+  {
+    JSONArray jsondata = null;
+    SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
+    String stringdata = sharedPreferences.getString("downloadedData", "DEFAULT");
+    try {
+      jsondata = new JSONArray(stringdata);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return jsondata;
   }
 }
