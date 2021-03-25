@@ -36,6 +36,7 @@ import android.widget.EditText;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 
 
 public class findQuoteFragment extends Fragment implements OnClickListener
@@ -48,6 +49,7 @@ public class findQuoteFragment extends Fragment implements OnClickListener
   TextView findQuoteResult;
   Button findQuoteOkButton;
   Button findQuotecancelButton;
+  JSONArray savedData;
 
 
  public findQuoteFragment() {}
@@ -84,7 +86,11 @@ public class findQuoteFragment extends Fragment implements OnClickListener
   { InputMethodManager _imm = (InputMethodManager) myContext.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
     try { _imm.hideSoftInputFromWindow(_v.getWindowToken(), 0); } catch (Exception _e) { }
     if (_v.getId() == R.id.findQuoteOK)
-    { findQuoteOK(_v); }
+    {
+        findQuoteOK(_v);
+        savedData = DailyQuote_DAO.loadData(myContext);
+//        System.out.println("SAVED DATA "+savedData);
+    }
     else if (_v.getId() == R.id.findQuoteCancel)
     { findQuoteCancel(_v); }
   }
