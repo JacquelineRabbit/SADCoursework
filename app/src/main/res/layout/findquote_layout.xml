@@ -17,11 +17,23 @@ tools:context=".ui.main.findQuoteFragment" >
     android:hint="date for findQuote"
     android:textStyle="bold"
     android:background="#EEFFBB"
-    android:text="Date:" />
+    android:text="Date 1:" />
   <EditText
     android:id="@+id/findQuotedateField"
     android:layout_span="4" />
   </TableRow>
+
+    <TableRow>
+      <TextView
+          android:id="@+id/findQuotedateLabel2"
+          android:hint="date for findQuote"
+          android:textStyle="bold"
+          android:background="#EEFFBB"
+          android:text="Date 2:" />
+      <EditText
+          android:id="@+id/findQuotedateField2"
+          android:layout_span="4" />
+    </TableRow>
 
   <TableRow>
   <Button
