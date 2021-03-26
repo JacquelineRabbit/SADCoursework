@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import com.example.app16.ui.main.DailyQuote;
+import com.example.app16.ui.main.DailyQuote_DAO;
 import static org.junit.Assert.*;
 
 /**
@@ -25,6 +27,21 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+    public void makeFromCSVTest() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        assertEquals("com.example.app16", appContext.getPackageName());
+        DailyQuote_DAO dao = new DailyQuote_DAO();
+        //DailyQuote d = new DailyQuote();
+        //ArrayList<DailyQuote> arr = new ArrayList<>();
+        System.out.println(dao.makeFromCSV("{\"date\":\"2021-03-12\",\"open\":1.398641,\"high\":1.400403,\"low\":1.386789,\"close\":1.398993,\"adjclose\":1.398993,\"volume\":0}",appContext));
+        //assertEquals(,dao.makeFromCSV({"date":"2021-03-12","open":1.398641,"high":1.400403,"low":1.386789,"close":1.398993,"adjclose":1.398993,"volume":0},appContext));
+    }
+
+
+}
     @Test
     public void useAppContext() throws IOException, JSONException {
         // Context of the app under test.

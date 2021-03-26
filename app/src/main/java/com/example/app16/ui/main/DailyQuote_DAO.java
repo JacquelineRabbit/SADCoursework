@@ -138,6 +138,7 @@ public class DailyQuote_DAO
       }
     }
     saveData(result, myContext);
+    System.out.println(result);
     return result;
   }
 
