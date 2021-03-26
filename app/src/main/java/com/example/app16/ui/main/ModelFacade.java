@@ -1,6 +1,9 @@
 package com.example.app16.ui.main;
 
 import android.content.Context;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +56,8 @@ public class ModelFacade
     x = new InternetAccessor();
     x.setDelegate(this);
     x.execute(url);
-    result = ("Called url: " + url);
+    JSONArray allData = DailyQuote_DAO.loadData(myContext);
+    result = allData.toString();
 
     return result;
   }

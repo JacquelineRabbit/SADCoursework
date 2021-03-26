@@ -28,6 +28,15 @@ tools:context=".ui.main.analyseFragment" >
   android:text="Cancel"
   android:onClick="analyseCancel"
   />
+    <Button
+        android:id="@+id/viewChart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFCC00"
+        android:layout_column="4"
+        android:text="View Chart"
+        android:onClick="analyseCancel"
+        />
   </TableRow>
 
   <ImageView
