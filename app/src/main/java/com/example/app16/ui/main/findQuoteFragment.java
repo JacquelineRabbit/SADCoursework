@@ -89,7 +89,6 @@ public class findQuoteFragment extends Fragment implements OnClickListener
     {
         findQuoteOK(_v);
         savedData = DailyQuote_DAO.loadData(myContext);
-//        System.out.println("SAVED DATA "+savedData);
     }
     else if (_v.getId() == R.id.findQuoteCancel)
     { findQuoteCancel(_v); }
