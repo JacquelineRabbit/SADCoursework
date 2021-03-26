@@ -1,6 +1,9 @@
 package com.example.app16.ui.main;
 
 import android.content.Context;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,13 +37,6 @@ public class ModelFacade
   public String findQuote(String date)
   { 
     String result = "";
-    if (DailyQuote_DAO.isCached(date))
-    {
-      result = "Data already exists";
-    return result;
-    }
-    else {
-      {}    }
     long t1 = 0;
     t1 = DateComponent.getEpochSeconds(date);
     long t2 = 0;
@@ -55,7 +51,8 @@ public class ModelFacade
     x = new InternetAccessor();
     x.setDelegate(this);
     x.execute(url);
-    result = ("Called url: " + url);
+    JSONArray allData = DailyQuote_DAO.loadData(myContext);
+    result = allData.toString();
 
     return result;
   }

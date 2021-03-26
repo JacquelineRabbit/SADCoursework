@@ -24,7 +24,8 @@ import android.content.SharedPreferences;
 import static android.content.Context.MODE_PRIVATE;
 
 public class DailyQuote_DAO
-{ public static String getURL(String command, ArrayList<String> pars, ArrayList<String> values)
+{
+  public static String getURL(String command, ArrayList<String> pars, ArrayList<String> values)
   { String res = "https://query1.finance.yahoo.com/v7/finance/download/";
     if (command != null)
     { res = res + command; }
@@ -169,20 +170,26 @@ public class DailyQuote_DAO
 
   public static void saveData(ArrayList<DailyQuote> data, Context context)
   {
+    SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+
     // Load previous data and append current data to it
     JSONArray previousData = loadData(context);
     JSONArray jsondata = writeJSONArray(data);
-    try {
-      for (int i = 0; i < jsondata.length(); i++) {
-        JSONObject jsonObject = jsondata.getJSONObject(i);
-        previousData.put(jsonObject);
+    if (previousData!=null){
+      try {
+        for (int i = 0; i < jsondata.length(); i++) {
+          JSONObject jsonObject = jsondata.getJSONObject(i);
+          previousData.put(jsonObject);
+        }
+      } catch (JSONException e){
+        e.printStackTrace();
       }
-    } catch (JSONException e){
-      e.printStackTrace();
+      editor.putString("downloadedData", (previousData.toString()));
     }
-    SharedPreferences sharedPreferences = context.getSharedPreferences("preferencestorage", MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
-    editor.putString("downloadedData", (previousData.toString()));
+    else {
+      editor.putString("downloadedData", (jsondata.toString()));
+    }
     editor.commit();
   }
 
