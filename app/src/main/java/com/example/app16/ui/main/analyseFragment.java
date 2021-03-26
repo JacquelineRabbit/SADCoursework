@@ -4,6 +4,7 @@ package com.example.app16.ui.main;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -20,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.app16.R;
+import com.example.app16.ViewChart;
+
 import android.content.Context;
 import androidx.annotation.LayoutRes;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -47,6 +50,7 @@ public class analyseFragment extends Fragment implements OnClickListener
   ImageView analyseResult;
   Button analyseOkButton;
   Button analysecancelButton;
+  Button analyseViewButton;
 
 
  public analyseFragment() {}
@@ -73,6 +77,8 @@ public class analyseFragment extends Fragment implements OnClickListener
     analyseOkButton.setOnClickListener(this);
     analysecancelButton = root.findViewById(R.id.analyseCancel);
     analysecancelButton.setOnClickListener(this);
+    analyseViewButton = root.findViewById(R.id.viewChart);
+    analyseViewButton.setOnClickListener(this);
     return root;
   }
 
@@ -85,6 +91,8 @@ public class analyseFragment extends Fragment implements OnClickListener
     { analyseOK(_v); }
     else if (_v.getId() == R.id.analyseCancel)
     { analyseCancel(_v); }
+    else if (_v.getId()== R.id.viewChart)
+    { viewChart(_v); }
   }
 
   public void analyseOK(View _v) 
@@ -105,5 +113,10 @@ public class analyseFragment extends Fragment implements OnClickListener
 
   public void analyseCancel(View _v)
   { analysebean.resetData();
+  }
+
+  public void viewChart(View _v) {
+     Intent myIntent = new Intent(_v.getContext(), ViewChart.class);
+     startActivityForResult(myIntent, 0);
   }
 }
