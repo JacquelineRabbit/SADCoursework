@@ -28,8 +28,8 @@ public class findQuoteBean
 
   public String errors() { return errors.toString(); }
 
-  public String findQuote()
-  { return model.findQuote(date); }
+  public String findQuote(String date, String date2)
+  { return model.findQuote(date, date2); }
 
 }
 

@@ -31,20 +31,18 @@ public class ModelFacade
 
   }
 
-  public String findQuote(String date)
+  public String findQuote(String date, String date2)
   { 
     String result = "";
-    if (DailyQuote_DAO.isCached(date))
-    {
-      result = "Data already exists";
-    return result;
-    }
-    else {
-      {}    }
     long t1 = 0;
     t1 = DateComponent.getEpochSeconds(date);
     long t2 = 0;
-    t2 = (t1 + 7 * 86400);
+    t2 = DateComponent.getEpochSeconds(date2);
+    if ((t2 - t1) > 63113852)
+    {
+      result = "Please enter dates a maximum of 2 years apart.";
+      return result;
+    }
     String url = "";
     ArrayList<String> sq1 = null;
     sq1 = Ocl.copySequence(Ocl.initialiseSequence("period1","period2","interval","events"));

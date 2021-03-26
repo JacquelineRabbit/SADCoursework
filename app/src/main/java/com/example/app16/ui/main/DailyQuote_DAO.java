@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.Collections;
 import java.util.StringTokenizer;
-import java.util.Date; 
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import org.json.JSONArray;
@@ -25,21 +25,21 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class DailyQuote_DAO
 { public static String getURL(String command, ArrayList<String> pars, ArrayList<String> values)
-  { String res = "https://query1.finance.yahoo.com/v7/finance/download/";
-    if (command != null)
-    { res = res + command; }
-    if (pars.size() == 0)
-    { return res; }
-    res = res + "?";
-    for (int i = 0; i < pars.size(); i++)
-    { String par = pars.get(i); 
-      String val = values.get(i); 
-      res = res + par + "=" + val;
-      if (i < pars.size() - 1)
-      { res = res + "&"; }
-    }
-    return res;
+{ String res = "https://query1.finance.yahoo.com/v7/finance/download/";
+  if (command != null)
+  { res = res + command; }
+  if (pars.size() == 0)
+  { return res; }
+  res = res + "?";
+  for (int i = 0; i < pars.size(); i++)
+  { String par = pars.get(i);
+    String val = values.get(i);
+    res = res + par + "=" + val;
+    if (i < pars.size() - 1)
+    { res = res + "&"; }
   }
+  return res;
+}
 
   public static boolean isCached(String id)
   { DailyQuote _x = DailyQuote.DailyQuote_index.get(id);
@@ -62,12 +62,36 @@ public class DailyQuote_DAO
     if (dailyquotex == null)
     { dailyquotex = DailyQuote.createByPKDailyQuote((String) _line1vals.get(0)); }
     dailyquotex.date = (String) _line1vals.get(0);
-    dailyquotex.open = Double.parseDouble((String) _line1vals.get(1));
-    dailyquotex.high = Double.parseDouble((String) _line1vals.get(2));
-    dailyquotex.low = Double.parseDouble((String) _line1vals.get(3));
-    dailyquotex.close = Double.parseDouble((String) _line1vals.get(4));
-    dailyquotex.adjclose = Double.parseDouble((String) _line1vals.get(5));
-    dailyquotex.volume = Double.parseDouble((String) _line1vals.get(6));
+    try {
+      dailyquotex.open = Double.parseDouble((String) _line1vals.get(1));
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
+    }
+    try {
+      dailyquotex.high = Double.parseDouble((String) _line1vals.get(2));
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
+    }
+    try {
+      dailyquotex.low = Double.parseDouble((String) _line1vals.get(3));
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
+    }
+    try {
+      dailyquotex.close = Double.parseDouble((String) _line1vals.get(4));
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
+    }
+    try {
+      dailyquotex.adjclose = Double.parseDouble((String) _line1vals.get(5));
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
+    }
+    try {
+      dailyquotex.volume = Double.parseDouble((String) _line1vals.get(6));
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
+    }
     return dailyquotex;
   }
 
@@ -80,7 +104,7 @@ public class DailyQuote_DAO
       String date = obj.getString("date");
       DailyQuote _dailyquotex = DailyQuote.DailyQuote_index.get(date);
       if (_dailyquotex == null) { _dailyquotex = DailyQuote.createByPKDailyQuote(date); }
-      
+
       _dailyquotex.date = obj.getString("date");
       _dailyquotex.open = obj.getDouble("open");
       _dailyquotex.high = obj.getDouble("high");
@@ -125,12 +149,12 @@ public class DailyQuote_DAO
     int len = jarray.length();
     for (int i = 0; i < len; i++)
     { try { JSONObject _x = jarray.getJSONObject(i);
-        if (_x != null)
-        { DailyQuote _y = parseJSON(_x); 
-          if (_y != null) { res.add(_y); }
-        }
+      if (_x != null)
+      { DailyQuote _y = parseJSON(_x);
+        if (_y != null) { res.add(_y); }
       }
-      catch (Exception _e) { }
+    }
+    catch (Exception _e) { }
     }
     return res;
   }
@@ -140,14 +164,14 @@ public class DailyQuote_DAO
   public static JSONObject writeJSON(DailyQuote _x)
   { JSONObject result = new JSONObject();
     try {
-       result.put("date", _x.date);
-       result.put("open", _x.open);
-       result.put("high", _x.high);
-       result.put("low", _x.low);
-       result.put("close", _x.close);
-       result.put("adjclose", _x.adjclose);
-       result.put("volume", _x.volume);
-      } catch (Exception _e) { return null; }
+      result.put("date", _x.date);
+      result.put("open", _x.open);
+      result.put("high", _x.high);
+      result.put("low", _x.low);
+      result.put("close", _x.close);
+      result.put("adjclose", _x.adjclose);
+      result.put("volume", _x.volume);
+    } catch (Exception _e) { return null; }
     return result;
   }
 
@@ -158,10 +182,10 @@ public class DailyQuote_DAO
     for (int _i = 0; _i < es.size(); _i++)
     { DailyQuote _ex = es.get(_i);
       JSONObject _jx = writeJSON(_ex);
-      if (_jx == null) { } 
-      else 
+      if (_jx == null) { }
+      else
       { try { result.put(_jx); }
-        catch (Exception _ee) { }
+      catch (Exception _ee) { }
       }
     }
     return result;

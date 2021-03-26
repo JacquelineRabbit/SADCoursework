@@ -44,7 +44,9 @@ public class findQuoteFragment extends Fragment implements OnClickListener
   findQuoteBean findquotebean;
 
   EditText findQuotedateTextField;
+  EditText findQuotedateTextField2;
   String findQuotedateData = "";
+  String findQuotedateData2 = "";
   TextView findQuoteResult;
   Button findQuoteOkButton;
   Button findQuotecancelButton;
@@ -69,6 +71,7 @@ public class findQuoteFragment extends Fragment implements OnClickListener
   { root = inflater.inflate(R.layout.findquote_layout, container, false);
     Bundle data = getArguments();
     findQuotedateTextField = (EditText) root.findViewById(R.id.findQuotedateField);
+    findQuotedateTextField2 = (EditText) root.findViewById(R.id.findQuotedateField2);
     findQuoteResult = (TextView) root.findViewById(R.id.findQuoteResult);
     findquotebean = new findQuoteBean(myContext);
     findQuoteOkButton = root.findViewById(R.id.findQuoteOK);
@@ -92,13 +95,14 @@ public class findQuoteFragment extends Fragment implements OnClickListener
   public void findQuoteOK(View _v) 
   { 
     findQuotedateData = findQuotedateTextField.getText() + "";
+    findQuotedateData2 = findQuotedateTextField2.getText() + "";
     findquotebean.setdate(findQuotedateData);
     if (findquotebean.isfindQuoteerror())
     { Log.w(getClass().getName(), findquotebean.errors());
       Toast.makeText(myContext, "Errors: " + findquotebean.errors(), Toast.LENGTH_LONG).show();
     }
     else
-    { findQuoteResult.setText(findquotebean.findQuote() + ""); }
+    { findQuoteResult.setText(findquotebean.findQuote(findQuotedateData, findQuotedateData2) + ""); }
   }
 
 
@@ -106,6 +110,7 @@ public class findQuoteFragment extends Fragment implements OnClickListener
   public void findQuoteCancel(View _v)
   { findquotebean.resetData();
     findQuotedateTextField.setText("");
+    findQuotedateTextField2.setText("");
     findQuoteResult.setText("");
   }
 }
